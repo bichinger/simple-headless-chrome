@@ -44,7 +44,7 @@ var Tab = function (_EventEmitter) {
   _createClass(Tab, [{
     key: 'init',
     value: function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
         var Target, params;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
@@ -68,7 +68,7 @@ var Tab = function (_EventEmitter) {
                 };
 
                 if (!this._tabOptions.privateTab) {
-                  _context.next = 10;
+                  _context.next = 11;
                   break;
                 }
 
@@ -84,13 +84,15 @@ var Tab = function (_EventEmitter) {
                 return Target.createBrowserContext();
 
               case 9:
-                this._privateTab = params.browserContextId = _context.sent;
+                this._privateTab = _context.sent;
 
-              case 10:
-                _context.next = 12;
+                params.browserContextId = this._privateTab.browserContextId;
+
+              case 11:
+                _context.next = 13;
                 return Target.createTarget(params);
 
-              case 12:
+              case 13:
                 this._target = _context.sent;
 
 
@@ -99,31 +101,31 @@ var Tab = function (_EventEmitter) {
 
                 // Attach the tab to the CDP
                 debug(`:: init => Attaching tab "${this._targetId}" to the CDP...`);
-                _context.next = 17;
+                _context.next = 18;
                 return chrome.attachCdpToTarget(this._host, this._port, this._targetId);
 
-              case 17:
+              case 18:
                 this.client = _context.sent;
 
 
                 // Setup Actions, Handlers and Viewport
                 debug(`:: init => Preparing Actions, Handlers and Viewport for tab "${this._targetId}"...`);
-                _context.next = 21;
+                _context.next = 22;
                 return setupHandlers.call(this);
 
-              case 21:
-                _context.next = 23;
+              case 22:
+                _context.next = 24;
                 return setupViewport.call(this);
 
-              case 23:
+              case 24:
                 setupActions.call(this);
 
                 debug(`:: init => Tab "${this._targetId}" initialized successfully!`);
 
                 return _context.abrupt('return', this);
 
-              case 28:
-                _context.prev = 28;
+              case 29:
+                _context.prev = 29;
                 _context.t0 = _context['catch'](2);
 
                 debug(`:: init => Could not initialize new target/tab. Error code: ${_context.t0.code}`, _context.t0);
@@ -135,12 +137,12 @@ var Tab = function (_EventEmitter) {
                 }
                 throw _context.t0;
 
-              case 34:
+              case 35:
               case 'end':
                 return _context.stop();
             }
           }
-        }, _callee, this, [[2, 28]]);
+        }, _callee, this, [[2, 29]]);
       }));
 
       function init() {
@@ -209,7 +211,7 @@ var Tab = function (_EventEmitter) {
   }, {
     key: 'close',
     value: function () {
-      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+      var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2() {
         var Target, tabId, tabContextId;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
